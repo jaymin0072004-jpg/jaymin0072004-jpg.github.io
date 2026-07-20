@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VP Racing Fuels — Gas & Grill | Thomasville, GA</title>
+<meta name="description" content="VP Racing Fuels Gas & Grill in Thomasville, GA. Diesel, convenience store, and onsite services. Open 7 days a week.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt: #071328;
+    --asphalt-2: #0F2249;
+    --racing-red: #D01730;
+    --red-dark: #8A0E22;
+    --fuel-amber: #2F80D6;
+    --blue-light: #6DB2F2;
+    --concrete: #83A0C7;
+    --cream: #EAF2FC;
+    --line: rgba(234,242,252,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--asphalt);
+    color:var(--cream);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* checkered divider */
+  .checker{
+    height:14px;
+    width:100%;
+    background-image:
+      linear-gradient(45deg, var(--cream) 25%, transparent 25%, transparent 75%, var(--cream) 75%),
+      linear-gradient(45deg, var(--cream) 25%, transparent 25%, transparent 75%, var(--cream) 75%);
+    background-size:14px 14px;
+    background-position:0 0, 7px 7px;
+    background-color: var(--asphalt);
+    opacity:0.9;
+  }
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(21,22,26,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .navrow{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    max-width:1100px; margin:0 auto;
+  }
+  .brand{
+    display:flex; flex-direction:column; line-height:1;
+  }
+  .brand .vp{
+    font-size:22px; font-weight:700; letter-spacing:0.06em;
+  }
+  .brand .sub{
+    font-family:'Work Sans'; text-transform:none; font-size:12px; color:var(--concrete); letter-spacing:0.02em; margin-top:2px;
+  }
+  nav ul{list-style:none; display:flex; gap:28px;}
+  nav a{font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:var(--concrete); transition:color .2s;}
+  nav a:hover{color:var(--fuel-amber);}
+  .call-btn{
+    background:var(--racing-red); color:var(--cream);
+    padding:10px 18px; font-size:13px; text-transform:uppercase; letter-spacing:0.08em;
+    border-radius:2px; font-weight:600;
+    border:1px solid var(--racing-red);
+    transition:background .2s, color .2s;
+  }
+  .call-btn:hover{background:transparent; color:var(--racing-red);}
+  .menu-toggle{display:none; background:none; border:none; color:var(--cream); font-size:26px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:90px 0 70px;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(200,16,46,0.18), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(242,169,0,0.10), transparent 40%),
+      var(--asphalt);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.3fr 0.9fr; gap:50px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--fuel-amber); margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:26px; height:2px; background:var(--fuel-amber); display:inline-block;}
+  .hero h1{
+    font-size:clamp(42px, 6.2vw, 78px);
+    line-height:0.98;
+    font-weight:700;
+  }
+  .hero h1 span{color:var(--racing-red);}
+  .hero p.lead{
+    margin-top:22px; max-width:480px; color:var(--concrete); font-size:16.5px;
+  }
+  .hero-ctas{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--fuel-amber); color:var(--asphalt); font-weight:600;
+    padding:14px 26px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px;
+    transition:transform .15s ease;
+    display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--cream);
+    padding:14px 26px; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px;
+    transition:border-color .2s, color .2s;
+  }
+  .btn-ghost:hover{border-color:var(--fuel-amber); color:var(--fuel-amber);}
+
+  /* GAUGE — signature element */
+  .gauge-card{
+    background:var(--asphalt-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:28px;
+    text-align:center;
+    position:relative;
+  }
+  .gauge-label{font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--concrete); margin-bottom:14px;}
+  .gauge-svg{width:230px; height:150px; margin:0 auto;}
+  .gauge-status{
+    margin-top:10px; font-family:'Oswald'; font-size:26px; text-transform:uppercase; letter-spacing:0.04em; font-weight:600;
+  }
+  .gauge-status.open{color:var(--blue-light);}
+  .gauge-status.closed{color:var(--racing-red);}
+  .gauge-sub{font-size:13px; color:var(--concrete); margin-top:4px;}
+  #needle{transform-origin:115px 130px; transition:transform 1s cubic-bezier(.4,1.6,.4,1);}
+
+  /* SECTIONS */
+  section{padding:80px 0;}
+  .section-head{margin-bottom:44px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+  .section-head h2{font-size:clamp(28px,4vw,40px); font-weight:600;}
+  .tag-count{font-family:'Space Mono'; font-size:13px; color:var(--concrete);}
+
+  /* about */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
+  .about-grid p{color:var(--concrete); font-size:16px; margin-bottom:16px;}
+  .stat-line{display:flex; justify-content:space-between; padding:14px 0; border-top:1px solid var(--line); font-size:14px;}
+  .stat-line:last-child{border-bottom:1px solid var(--line);}
+  .stat-line .k{color:var(--concrete); text-transform:uppercase; letter-spacing:0.06em; font-size:12px;}
+  .stat-line .v{font-family:'Space Mono'; text-align:right;}
+
+  /* offerings grid */
+  .offer-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .offer-cell{
+    background:var(--asphalt); padding:32px 22px; min-height:150px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .offer-cell .num{font-family:'Space Mono'; font-size:12px; color:var(--fuel-amber);}
+  .offer-cell .label{font-family:'Oswald'; font-size:16px; text-transform:uppercase; margin-top:20px;}
+  .offer-cell.no .label{color:var(--concrete); text-decoration:line-through; text-decoration-color:var(--racing-red);}
+
+  /* food — Hunt Brothers Pizza */
+  .food-band{
+    background:linear-gradient(135deg, var(--asphalt-2) 0%, #123368 55%, var(--asphalt) 100%);
+    border-radius:8px;
+    padding:44px;
+    margin-bottom:44px;
+    display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap;
+    border:1px solid var(--line);
+    border-left:3px solid var(--racing-red);
+  }
+  .food-band h3{font-size:clamp(22px,3vw,32px); max-width:520px;}
+  .food-band p{color:var(--cream); opacity:0.85; margin-top:8px; max-width:480px; font-size:14.5px;}
+  .food-band-media{flex-shrink:0;}
+  .food-band-media img{
+    width:220px; height:160px; object-fit:cover; border-radius:6px; border:1px solid var(--line); display:block;
+  }
+  .crust-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:2px;}
+  .crust-cell{background:var(--asphalt-2); padding:26px; }
+  .crust-cell h4{font-family:'Oswald'; text-transform:uppercase; font-size:16px; color:var(--blue-light); margin-bottom:8px;}
+  .crust-cell p{font-size:13.5px; color:var(--concrete);}
+  .pizza-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:2px;}
+  .pizza-cell{background:var(--asphalt); padding:24px 20px; min-height:140px; display:flex; flex-direction:column; justify-content:space-between;}
+  .pizza-cell .num{font-family:'Space Mono'; font-size:12px; color:var(--fuel-amber);}
+  .pizza-cell .label{font-family:'Oswald'; font-size:15px; text-transform:uppercase; margin-top:18px;}
+  .pizza-cell .desc{font-size:12.5px; color:var(--concrete); margin-top:6px;}
+  .topping-row{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;
+  }
+  .topping-pill{
+    border:1px solid var(--line); color:var(--concrete);
+    font-size:12.5px; padding:7px 14px; border-radius:20px;
+    font-family:'Work Sans';
+  }
+  .food-sub-head{display:flex; align-items:baseline; justify-content:space-between; margin:44px 0 0; flex-wrap:wrap; gap:10px;}
+  .food-sub-head h3{font-size:20px;}
+  .food-sub-head span{font-family:'Space Mono'; font-size:12px; color:var(--concrete);}
+  .wing-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:16px;}
+  .wing-card{border:1px solid var(--line); border-radius:6px; padding:20px; overflow:hidden;}
+  .wing-card img{width:100%; height:150px; object-fit:cover; border-radius:4px; margin-bottom:14px; display:block;}
+  .wing-card .k{font-family:'Space Mono'; font-size:11px; color:var(--blue-light); text-transform:uppercase; letter-spacing:0.08em;}
+  .wing-card .v{font-family:'Oswald'; font-size:17px; text-transform:uppercase; margin-top:6px;}
+  .crust-cell img{width:56px; height:56px; object-fit:contain; margin-bottom:14px; display:block;}
+
+  /* hours - pit board style */
+  .hours-board{
+    background:var(--asphalt-2); border:1px solid var(--line); border-radius:6px; overflow:hidden;
+  }
+  .hours-row{
+    display:grid; grid-template-columns:1fr auto; padding:16px 26px;
+    border-bottom:1px solid var(--line);
+    font-family:'Space Mono'; font-size:15px;
+    align-items:center;
+  }
+  .hours-row:last-child{border-bottom:none;}
+  .hours-row.today{background:rgba(242,169,0,0.08);}
+  .hours-row .day{text-transform:uppercase; letter-spacing:0.06em; font-family:'Oswald'; font-size:14px;}
+  .hours-row .today-tag{
+    display:inline-block; margin-left:10px; background:var(--fuel-amber); color:var(--asphalt);
+    font-family:'Work Sans'; font-size:10px; font-weight:700; padding:2px 7px; border-radius:2px; letter-spacing:0.04em;
+  }
+
+  /* location */
+  .loc-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center;}
+  .addr-card{background:var(--asphalt-2); border:1px solid var(--line); border-radius:6px; padding:34px;}
+  .addr-card .addr{font-family:'Oswald'; font-size:22px; text-transform:uppercase; margin-bottom:6px;}
+  .addr-card .service{color:var(--concrete); margin-top:18px; font-size:14px;}
+  .map-embed{border:1px solid var(--line); border-radius:6px; overflow:hidden; height:320px;}
+  .map-embed iframe{width:100%; height:100%; border:0; filter:grayscale(0.4) contrast(1.1);}
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:50px 0 30px;
+  }
+  .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;}
+  .foot-brand{font-family:'Oswald'; font-size:20px; letter-spacing:0.06em;}
+  .foot-sub{color:var(--concrete); font-size:13px; margin-top:6px;}
+  .foot-links{display:flex; gap:24px;}
+  .foot-links a{color:var(--concrete); font-size:13px; text-transform:uppercase; letter-spacing:0.05em; transition:color .2s;}
+  .foot-links a:hover{color:var(--fuel-amber);}
+  .fineprint{margin-top:34px; color:#5c5a55; font-size:12px; text-align:center;}
+
+  @media (max-width:860px){
+    nav{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .about-grid, .loc-grid{grid-template-columns:1fr; gap:36px;}
+    .offer-grid{grid-template-columns:repeat(2,1fr);}
+    .crust-grid{grid-template-columns:1fr;}
+    .pizza-grid{grid-template-columns:repeat(2,1fr);}
+    .wing-grid{grid-template-columns:1fr;}
+    .food-band{flex-direction:column; align-items:flex-start;}
+  }
+  @media (max-width:480px){
+    .offer-grid{grid-template-columns:1fr 1fr;}
+    .hero{padding:70px 0 50px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    #needle{transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navrow">
+    <div class="brand">
+      <span class="vp display">VP Racing Fuels</span>
+      <span class="sub">Gas &amp; Grill · Thomasville, GA</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#offerings">Offerings</a></li>
+        <li><a href="#food">Food</a></li>
+        <li><a href="#hours">Hours</a></li>
+        <li><a href="#location">Location</a></li>
+      </ul>
+    </nav>
+    <a class="call-btn" href="tel:+12292364002">Call (229) 236-4002</a>
+  </div>
+</header>
+<div class="checker"></div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Gas Station · Est. 2020</div>
+      <h1>Fuel that<br>runs <span>hard.</span></h1>
+      <p class="lead">Gas &amp; Grill with VP Racing fuel, cold drinks, and a full convenience store — right on US‑84 in Thomasville, Georgia. Open every day of the week.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="tel:+12292364002">Call the Station</a>
+        <a class="btn-ghost" href="#location">Get Directions</a>
+      </div>
+    </div>
+    <div class="gauge-card">
+      <div class="gauge-label">Station Status</div>
+      <svg class="gauge-svg" viewBox="0 0 230 150">
+        <path d="M 15 130 A 100 100 0 0 1 215 130" fill="none" stroke="#2A2D33" stroke-width="16" stroke-linecap="round"/>
+        <path id="gaugeArc" d="M 15 130 A 100 100 0 0 1 215 130" fill="none" stroke="url(#grad)" stroke-width="16" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="0"/>
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#D01730"/>
+            <stop offset="50%" stop-color="#5A3FA8"/>
+            <stop offset="100%" stop-color="#6DB2F2"/>
+          </linearGradient>
+        </defs>
+        <line id="needle" x1="115" y1="130" x2="115" y2="45" stroke="#F3EFE6" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="115" cy="130" r="8" fill="#F3EFE6"/>
+      </svg>
+      <div class="gauge-status" id="statusText">—</div>
+      <div class="gauge-sub" id="statusSub">Checking today's hours…</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="eyebrow">About the Station</div>
+      <h2 style="margin-bottom:20px;">Gas &amp; Grill, done right.</h2>
+      <p>VP Racing Fuels is a gas station and convenience store serving Thomasville and the surrounding area since January 2020. Stop in for VP Racing fuel, diesel, and everything you need from the store — all in a wheelchair‑accessible building with onsite services.</p>
+      <p>We're a straightforward, dependable stop for locals and travelers passing through on US‑84 — no car wash, no oil changes, just fuel, a full convenience store, and fast service.</p>
+    </div>
+    <div>
+      <div class="stat-line"><span class="k">Category</span><span class="v">Gas Station</span></div>
+      <div class="stat-line"><span class="k">Opened</span><span class="v">Jan 1, 2020</span></div>
+      <div class="stat-line"><span class="k">Phone</span><span class="v"><a href="tel:+12292364002">(229) 236-4002</a></span></div>
+      <div class="stat-line"><span class="k">Service Area</span><span class="v">Thomasville, GA</span></div>
+      <div class="stat-line"><span class="k">Accessibility</span><span class="v">Wheelchair entrance &amp; restroom</span></div>
+      <div class="stat-line"><span class="k">Payments</span><span class="v">Credit · Debit · NFC / Tap</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<section id="offerings">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What's Here</h2>
+      <span class="tag-count mono">06 amenities listed</span>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="offer-grid">
+      <div class="offer-cell"><span class="num">01</span><span class="label">Convenience Store</span></div>
+      <div class="offer-cell"><span class="num">02</span><span class="label">Diesel Available</span></div>
+      <div class="offer-cell"><span class="num">03</span><span class="label">Restroom Onsite</span></div>
+      <div class="offer-cell"><span class="num">04</span><span class="label">Onsite Services</span></div>
+      <div class="offer-cell"><span class="num">05</span><span class="label">Wheelchair Accessible Entrance</span></div>
+      <div class="offer-cell"><span class="num">06</span><span class="label">Wheelchair Accessible Restroom</span></div>
+      <div class="offer-cell no"><span class="num">—</span><span class="label">Car Wash</span></div>
+      <div class="offer-cell no"><span class="num">—</span><span class="label">Oil Changes</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<section id="food">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Food</h2>
+      <span class="tag-count mono">Hunt Brothers® Pizza</span>
+    </div>
+
+    <div class="food-band">
+      <div>
+        <div class="eyebrow" style="color:var(--cream);">Made Fresh In-Store</div>
+        <h3 class="display">All Toppings.<br>No Extra Charge.®</h3>
+        <p>10 toppings, 1,024 combinations, one price. Grab a Hunk A Pizza® on the go, or order a full pie made fresh while you fuel up.</p>
+        <div style="margin-top:20px;">
+          <a class="btn-primary" href="https://www.huntbrotherspizza.com/menu/" target="_blank" rel="noopener">Full HBP Menu</a>
+        </div>
+      </div>
+      <div class="food-band-media">
+        <img src="https://df7ogaw9x1jql.cloudfront.net/wp-content/uploads/2024/10/04162331/pizza-line-2.png" alt="Hunt Brothers Pizza lineup" loading="lazy">
+      </div>
+    </div>
+
+    <div class="food-sub-head">
+      <h3 class="display">Crusts</h3>
+    </div>
+    <div class="crust-grid">
+      <div class="crust-cell">
+        <img src="https://df7ogaw9x1jql.cloudfront.net/wp-content/uploads/2019/06/10132630/icon-original-2.png" alt="Original Crust icon" loading="lazy">
+        <h4>Original Crust</h4>
+        <p>Self-rising 12" crust with signature tomato sauce and part-skim mozzarella, cheese spread edge to edge. Available whole or as a Hunk A Pizza® quarter slice.</p>
+      </div>
+      <div class="crust-cell">
+        <img src="https://df7ogaw9x1jql.cloudfront.net/wp-content/uploads/2019/05/10132647/icon-thin.png" alt="Thin Crust icon" loading="lazy">
+        <h4>Thin Crust</h4>
+        <p>Freshly baked thin and crunchy crust with tomato sauce and a blend of mozzarella, white cheddar, and aged parmesan.</p>
+      </div>
+      <div class="crust-cell">
+        <img src="https://df7ogaw9x1jql.cloudfront.net/wp-content/uploads/2019/05/10132647/icon-cheese-1.png" alt="Double Cheese icon" loading="lazy">
+        <h4>Double Cheese</h4>
+        <p>Any pizza, twice the cheese, for an additional cost.</p>
+      </div>
+    </div>
+
+    <div class="food-sub-head">
+      <h3 class="display">Specialty Pizzas</h3>
+      <span>04 signature pies</span>
+    </div>
+    <div class="pizza-grid">
+      <div class="pizza-cell">
+        <span class="num">01</span>
+        <div><div class="label">Lotsa Meat</div><div class="desc">Italian sausage, beef, bacon &amp; pepperoni.</div></div>
+      </div>
+      <div class="pizza-cell">
+        <span class="num">02</span>
+        <div><div class="label">Loaded</div><div class="desc">Every meat and veggie topping, fully stacked.</div></div>
+      </div>
+      <div class="pizza-cell">
+        <span class="num">03</span>
+        <div><div class="label">Veggie</div><div class="desc">Peppers, mushrooms, onions, olives &amp; jalapeños.</div></div>
+      </div>
+      <div class="pizza-cell">
+        <span class="num">04</span>
+        <div><div class="label">Breakfast</div><div class="desc">Eggs, bacon &amp; sausage on buttered crust.</div></div>
+      </div>
+    </div>
+
+    <div class="food-sub-head">
+      <h3 class="display">Toppings, No Extra Charge</h3>
+    </div>
+    <div class="topping-row">
+      <span class="topping-pill">Pepperoni</span>
+      <span class="topping-pill">Italian Sausage</span>
+      <span class="topping-pill">Beef</span>
+      <span class="topping-pill">Bacon</span>
+      <span class="topping-pill">Bell Peppers</span>
+      <span class="topping-pill">Mushrooms</span>
+      <span class="topping-pill">Onions</span>
+      <span class="topping-pill">Black Olives</span>
+      <span class="topping-pill">Banana Peppers</span>
+      <span class="topping-pill">Jalapeño Peppers</span>
+    </div>
+
+    <div class="food-sub-head">
+      <h3 class="display">Wings &amp; WingBites®</h3>
+      <span>Single, double, or party size</span>
+    </div>
+    <div class="wing-grid">
+      <div class="wing-card">
+        <img src="https://df7ogaw9x1jql.cloudfront.net/wp-content/uploads/2019/05/10132651/wings.jpg" alt="Hunt Brothers Pizza wings" loading="lazy">
+        <div class="k">Wings</div>
+        <div class="v">Southern Style · Hot 'n Spicy</div>
+      </div>
+      <div class="wing-card">
+        <img src="https://df7ogaw9x1jql.cloudfront.net/wp-content/uploads/2019/06/10132554/wingbites-buffalo.jpg" alt="Hunt Brothers Pizza Buffalo WingBites" loading="lazy">
+        <div class="k">WingBites®</div>
+        <div class="v">Home Style · Buffalo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<section id="hours">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Hours</h2>
+      <span class="tag-count mono" id="tzNote">Local time</span>
+    </div>
+    <div class="hours-board" id="hoursBoard">
+      <div class="hours-row" data-day="0"><span class="day">Sunday</span><span>8:00 AM – 8:00 PM</span></div>
+      <div class="hours-row" data-day="1"><span class="day">Monday</span><span>6:00 AM – 9:00 PM</span></div>
+      <div class="hours-row" data-day="2"><span class="day">Tuesday</span><span>6:00 AM – 9:00 PM</span></div>
+      <div class="hours-row" data-day="3"><span class="day">Wednesday</span><span>6:00 AM – 9:00 PM</span></div>
+      <div class="hours-row" data-day="4"><span class="day">Thursday</span><span>6:00 AM – 9:00 PM</span></div>
+      <div class="hours-row" data-day="5"><span class="day">Friday</span><span>6:00 AM – 10:00 PM</span></div>
+      <div class="hours-row" data-day="6"><span class="day">Saturday</span><span>7:00 AM – 9:00 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="checker"></div>
+
+<section id="location">
+  <div class="wrap loc-grid">
+    <div class="addr-card">
+      <div class="eyebrow">Find Us</div>
+      <div class="addr">12216 U.S. 84</div>
+      <div class="addr" style="color:var(--concrete); font-size:16px;">Thomasville, Georgia 31757</div>
+      <div style="margin-top:22px;">
+        <a class="btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=12216+U.S.+84,+Thomasville,+GA+31757" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="service">Serving Thomasville, GA and the surrounding area.</div>
+    </div>
+    <div class="map-embed">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=12216+U.S.+84,+Thomasville,+GA+31757&output=embed">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">VP Racing Fuels</div>
+        <div class="foot-sub">12216 U.S. 84, Thomasville, GA 31757</div>
+      </div>
+      <div class="foot-links">
+        <a href="tel:+12292364002">(229) 236-4002</a>
+        <a href="#hours">Hours</a>
+        <a href="#location">Directions</a>
+      </div>
+    </div>
+    <div class="fineprint">© <span id="year"></span> VP Racing Fuels Gas &amp; Grill · Thomasville, GA</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Hours data: [openHour, openMin, closeHour, closeMin] in 24h, indexed by JS getDay() (0=Sun)
+  const hours = {
+    0: [8,0,20,0],
+    1: [6,0,21,0],
+    2: [6,0,21,0],
+    3: [6,0,21,0],
+    4: [6,0,21,0],
+    5: [6,0,22,0],
+    6: [7,0,21,0]
+  };
+
+  function fmt(h,m){
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    let hh = h % 12; if(hh===0) hh=12;
+    return hh + (m ? ':' + String(m).padStart(2,'0') : '') + ' ' + ampm;
+  }
+
+  const now = new Date();
+  const day = now.getDay();
+  const [oh,om,ch,cm] = hours[day];
+  const openMinutes = oh*60+om;
+  const closeMinutes = ch*60+cm;
+  const nowMinutes = now.getHours()*60 + now.getMinutes();
+  const isOpen = nowMinutes >= openMinutes && nowMinutes < closeMinutes;
+
+  const statusText = document.getElementById('statusText');
+  const statusSub = document.getElementById('statusSub');
+  const needle = document.getElementById('needle');
+  const arc = document.getElementById('gaugeArc');
+
+  if(isOpen){
+    statusText.textContent = 'Open Now';
+    statusText.className = 'gauge-status open';
+    statusSub.textContent = 'Closes at ' + fmt(ch,cm) + ' today';
+    // needle swings right (toward green) proportional to how far through the day
+    const progress = Math.min(1, Math.max(0, (nowMinutes - openMinutes) / (closeMinutes - openMinutes)));
+    const angle = -90 + (progress * 180);
+    needle.setAttribute('transform', 'rotate(' + angle + ' 115 130)');
+  } else {
+    statusText.textContent = 'Closed';
+    statusText.className = 'gauge-status closed';
+    if(nowMinutes < openMinutes){
+      statusSub.textContent = 'Opens at ' + fmt(oh,om) + ' today';
+    } else {
+      const nextDay = (day+1)%7;
+      const [noh,nom] = hours[nextDay];
+      const names=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      statusSub.textContent = 'Opens ' + fmt(noh,nom) + ' ' + names[nextDay];
+    }
+    needle.setAttribute('transform', 'rotate(-90 115 130)');
+  }
+
+  // highlight today's row
+  document.querySelectorAll('.hours-row').forEach(row => {
+    if(parseInt(row.getAttribute('data-day')) === day){
+      row.classList.add('today');
+      const dayLabel = row.querySelector('.day');
+      const tag = document.createElement('span');
+      tag.className = 'today-tag';
+      tag.textContent = 'Today';
+      dayLabel.appendChild(tag);
+    }
+  });
+</script>
+
+</body>
+</html>
